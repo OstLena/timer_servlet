@@ -1,18 +1,19 @@
 package com.goit.servlet;
 
-import jakarta.servlet.*;
-import jakarta.servlet.http.HttpFilter;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
+import javax.servlet.FilterChain;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.TimeZone;
 
 import static java.util.Objects.isNull;
 
-public class TimezoneValidateFilter extends HttpFilter  {
+@WebFilter("/time/*")
+public class TimezoneValidateFilter extends HttpFilter {
 
-    @Override
+
     protected void doFilter(HttpServletRequest req,
                             HttpServletResponse resp,
                             FilterChain chain) throws IOException {
@@ -30,5 +31,4 @@ public class TimezoneValidateFilter extends HttpFilter  {
             resp.getWriter().close();
         }
     }
-
 }
